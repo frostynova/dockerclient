@@ -217,7 +217,7 @@ func (client *DockerClient) StartContainer(id string, config *HostConfig) error 
 	err := ""
 	if config == nil {
 	} else {
-		data, err := json.Marshal(config)
+		data, err = json.Marshal(config)
 		if err != nil {
 			return err
 		}
