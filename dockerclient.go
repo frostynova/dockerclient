@@ -213,9 +213,14 @@ func (client *DockerClient) ContainerChanges(id string) ([]*ContainerChanges, er
 }
 
 func (client *DockerClient) StartContainer(id string, config *HostConfig) error {
-	data, err := json.Marshal(config)
-	if err != nil {
-		return err
+	tmp := HostConfig{}
+	if config == tmp {
+		data := ""
+	} else {
+		data, err := json.Marshal(config)
+		if err != nil {
+			return err
+		}
 	}
 	uri := fmt.Sprintf("/%s/containers/%s/start", APIVersion, id)
 	_, err = client.doRequest("POST", uri, data, nil)
