@@ -215,6 +215,7 @@ func (client *DockerClient) ContainerChanges(id string) ([]*ContainerChanges, er
 func (client *DockerClient) StartContainer(id string, config *HostConfig) error {
 	if config == nil {
 		data := []byte{}
+		err := ""
 	} else {
 		data, err := json.Marshal(config)
 		if err != nil {
